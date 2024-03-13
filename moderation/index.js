@@ -12,7 +12,7 @@ app.post('/events', async (req, res) => {
   if (type === 'CommentCreated') {
     const status = data.content.includes('green') ? 'rejected' : 'approved';
 
-    await axios.post('http://localhost:4005/events', {
+    await axios.post('http://event-bus-srv:4005/events', {
       type: 'CommentModerated',
       data: {
         id: data.id,
@@ -27,7 +27,7 @@ app.post('/events', async (req, res) => {
   if (type === 'PostCreated') {
     const status = data.title.includes('green') ? 'rejected' : 'approved';
     console.log(data);
-    await axios.post('http://localhost:4005/events', {
+    await axios.post('http://event-bus-srv:4005/events', {
       type: 'PostModerated',
       data: {
         id: data.id,
